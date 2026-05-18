@@ -7,7 +7,7 @@ require __DIR__ . '/vendor/autoload.php';
 use App\Http\Router;
 use App\Utils\View;
 
-define('URL', 'http://localhost/mvc');
+define('URL', 'http://localhost/php-mvc');
 
 View::init([
     'URL' => URL

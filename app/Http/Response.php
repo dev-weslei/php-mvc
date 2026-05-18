@@ -36,7 +36,7 @@ class Response {
     /**
      * Método responsável por alterar o Content-type do Response
      *
-     * @param $string $content
+     * @param string $contentType
      */
     public function setContentType($contentType) {
         $this->contentType = $contentType;
@@ -59,7 +59,7 @@ class Response {
      */
     private function sendHeaders(){
         http_response_code($this->httpCode);
-        foreach ($headers as $key => $value) {
+        foreach ($this->headers as $key => $value) {
             header($key.": ".$value);
         }
     }
