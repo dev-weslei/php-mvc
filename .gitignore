@@ -1,0 +1,22 @@
+# Arquivos de ambiente
+.env
+
+# Dependências do Composer
+/vendor/
+
+# Logs
+*.log
+
+# Cache
+/cache/
+/tmp/
+
+# Arquivos do sistema
+.DS_Store
+Thumbs.db
+
+# VSCode
+.vscode/
+
+# Arquivos do Apache/PHPStorm
+.idea/
