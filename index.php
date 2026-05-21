@@ -3,11 +3,6 @@
 require __DIR__ . '/bootstrap/app.php';
 
 use App\Http\Router;
-use App\Utils\View;
-
-View::init([
-    'URL' => getenv('URL')
-]);
 
 // INICIALIZA O ROTEADOR
 $obRouter = new Router(getenv('URL'));
