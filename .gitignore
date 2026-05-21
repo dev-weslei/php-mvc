@@ -2,7 +2,7 @@
 .env
 
 # Dependências do Composer
-/vendor/
+vendor/
 
 # Logs
 *.log
