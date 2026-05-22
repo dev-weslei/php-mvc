@@ -41,19 +41,41 @@ class Testimony {
      * @return boolean
      */
     public function cadastrar() {
-
         // DEFINE A DATA
         $this->data_criacao = date('Y-m-d H:i:s');
 
         // INSERE O DEPOIMENTO NO BANCO DE DADOS
         $this->id = (new Database('depoimentos'))->insert([
-            'nome'        => $this->nome,
-            'mensagem'    => $this->mensagem,
+            'nome'         => $this->nome,
+            'mensagem'     => $this->mensagem,
             'data_criacao' => $this->data_criacao
         ]);
- 
-        echo '<pre>';
-        print_r($this);
-        echo '</pre>';
+
+        return true;
+    }
+
+    /**
+     * Método responsável por retornar os depoimentos
+     *
+     * @param string $where
+     * @param string $order
+     * @param string $limit
+     * @param string $fields
+     * @return \PDOStatement
+     */
+    public static function getTestimonies(
+        $where = null, 
+        $order = null, 
+        $limit = null,
+        $fields = '*'
+    ) {
+        return (
+            new Database('depoimentos')
+        )->select(
+            $where, 
+            $order, 
+            $limit, 
+            $fields
+        );
     }
 }
