@@ -1,12 +1,13 @@
 <h1>View de depoimentos</h1>
 <section id="testimonies">
     {{itens}}
+    {{pagination}}
 </section>
 <hr>
 <section id="form">
     <h3>Envie seu depoimento:</h3>
    <!-- action="" -> caso seja omitido a requisicao sera enviada para a URL da pagina atual, porem, utilizando outro metodo (neste caso POST) -->
-    <form method="post">
+    <form method="post" action="?page=1">
         <div class="form-group">
             <label for="">Nome:</label>
             <input class="form-control" type="text" name="nome" id="" required>
