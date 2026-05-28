@@ -2,7 +2,6 @@
 
 namespace App\Controller\Pages;
 use App\Utils\View;
-use App\Pages\Home;
 
 class Template {
 
@@ -24,6 +23,51 @@ class Template {
         return View::render('pages/footer');
     }
 
+    /**
+     * Método responsável por renderizar o layout de paginação
+     *
+     * @param Request $request
+     * @param Pagination $obPagination
+     * @return string
+     */
+    public static function getPagination($request, $obPagination) {
+
+        $pages = $obPagination->getPages();
+        if (count($pages) <= 1) {
+            return '';
+        }
+
+        $links = '';
+
+        // URL atual sem GETS
+        $url = $request->getRouter()->getCurrentUrl();
+        $queryParams = $request->getQueryParams();
+        
+        // RENDERIZA OS LINKS
+        foreach ($pages as $page) {
+            $queryParams['page'] = $page['page'];
+            $link = $url.'?'.http_build_query($queryParams);
+    
+            // RENDERIZAÇÃO DA VIEW
+            $links .= View::render('pages/pagination/link', [
+                'page'   => $page['page'],
+                'link'   => $link,
+                'active' => $page['current'] ? 'active' : ''
+            ]);
+        }
+
+        // RENDERIZA BOX DE PAGINAÇÃO
+        return View::render('pages/pagination/box', [
+            'links'  => $links,
+        ]);
+    }
+
+    /**
+     * Metodo responsável por renderizar a estrutura padrão do template
+     *
+     * @param string $title
+     * @param string $body
+     */
     public static function getTemplate($title, $body) {
         return View::render('pages/template', [
             'title'  => $title,
