@@ -5,6 +5,13 @@ namespace App\Http;
 class Request {
 
     /**
+     * Instância de Router
+     *
+     * @var Router
+     */
+    private $router;
+
+    /**
      * Método HTTP da Requisição
      *
      * @var string
@@ -39,15 +46,32 @@ class Request {
      */
     private $headers = [];
 
-    public function __construct() {
+    /**
+     * Método responsável por inicializar a classe
+     * @param Router $router
+     */
+    public function __construct($router) {
+        $this->router      = $router;
         $this->queryParams = $_GET ?? [];
         $this->postVars    = $_POST ?? [];
         $this->headers     = getallheaders();
         $this->httpMethod  = $_SERVER['REQUEST_METHOD'] ?? '';
-        $this->uri         = $_SERVER['REQUEST_URI'] ?? '';
+        $this->setUri();
     }
 
-    // Métodos acessoresd
+    /**
+     * Método responsável por definir a URI (sem queryParams)
+     *
+     */
+    private function setUri() {
+        $this->uri = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
+    }
+
+    // Métodos acessores
+    public function getRouter() {
+        return $this->router;
+    }
+
     public function getHttpMethod() {
         return $this->httpMethod;
     }
