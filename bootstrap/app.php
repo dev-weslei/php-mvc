@@ -6,6 +6,7 @@ require __DIR__ . '/../vendor/autoload.php';
 use App\Common\Enviroment;
 use App\Utils\View;
 use WilliamCosta\DatabaseManager\Database;
+use App\Http\Middleware\Queue as MiddlewareQueue;
 
 // CARREGA AS VARIAVEIS DE AMBIENTE DO PROJETO
 Enviroment::load(__DIR__.'/../');
@@ -23,4 +24,12 @@ View::init([
     'URL' => getenv('URL')
 ]);
 
+// Middlewares utilizados em rotas especificas.
+MiddlewareQueue::setMap([
+    'maintenance' => App\Http\Middleware\Maintenance::class,
+]);
 
+// Mapeamento de Middlewares que serão executados em todas as rotas da aplicação
+MiddlewareQueue::setMiddlewaresDefault([
+    'maintenance'
+]);
