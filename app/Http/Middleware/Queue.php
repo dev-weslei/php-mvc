@@ -88,7 +88,7 @@ class Queue {
             return call_user_func_array($this->controller, $this->controllerArgs);
         }
 
-        // Retorna e remove o Middleware da fila (array)
+        // Retorna e remove o Middleware da fila
         $middleware = array_shift($this->middlewares);
 
         // Verifica se tem o Middleware mapeado
@@ -96,9 +96,8 @@ class Queue {
             throw new Exception("Problema ao processar o Middleware da Requisição", 500);
         }
 
-        $queue = $this;
-        $next = function($request) use($queue) {
-            return $queue->next($request);
+        $next = function($request) {
+            return $this->next($request);
         };
 
         // Executa o Middleware
