@@ -167,7 +167,7 @@ class Router {
 
                     // VARIAVEIS PROCESSADAS
                     $keys = $methods[$httpMethod]['variables'];
-                    $methods[$httpMethod]['variables'] = array_combine($keys, $matches);
+                    $methods[$httpMethod]['variables']            = array_combine($keys, $matches);
                     $methods[$httpMethod]['variables']['request'] = $this->request;
 
                     // RETORNO DOS PARAMETROS DA ROTA
@@ -204,7 +204,11 @@ class Router {
             }
 
             // retorna a execução da fila de Middlewares
-            return (new MiddlewareQueue($route['middlewares'], $route['controller'], $args))->next($this->request);
+            return (new MiddlewareQueue(
+                $route['middlewares'], 
+                $route['controller'], 
+                $args
+            ))->next($this->request);
             
         } catch (Exception $e) {
             return new Response($e->getCode(), $e->getMessage());
@@ -217,5 +221,17 @@ class Router {
      */
     public function getCurrentUrl() {
         return $this->url.$this->getUri();
+    }
+
+    /**
+     * Método responsável por redirecionar a URL
+     * @param string $route
+     */
+    public function redirect($route) {
+        $url = $this->url.$route;
+        
+        // Executa o redirect
+        header('location:'.$url);
+        exit;
     }
 }
