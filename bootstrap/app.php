@@ -24,9 +24,11 @@ View::init([
     'URL' => getenv('URL')
 ]);
 
-// Middlewares utilizados em rotas especificas.
+// Define o mapeamento (registrar) de Middlewares
 MiddlewareQueue::setMap([
-    'maintenance' => App\Http\Middleware\Maintenance::class,
+    'maintenance'           => App\Http\Middleware\Maintenance::class,
+    'required-admin-logout' => App\Http\Middleware\RequiredAdminLogout::class,
+    'required-admin-login'  => App\Http\Middleware\RequiredAdminLogin::class
 ]);
 
 // Mapeamento de Middlewares que serão executados em todas as rotas da aplicação
