@@ -2,6 +2,8 @@
 
 namespace App\Controller\Pages;
 use App\Utils\View;
+use App\Http\Request;
+use WilliamCosta\DatabaseManager\Pagination;
 
 class Template {
 
@@ -36,18 +38,16 @@ class Template {
         if (count($pages) <= 1) {
             return '';
         }
-
-        $links = '';
-
-        // URL atual sem GETS
+   
+        // URL atual sem GETS - http://localhost:8000/php-mvc/depoimentos
         $url = $request->getRouter()->getCurrentUrl();
-        $queryParams = $request->getQueryParams();
-        
+
         // RENDERIZA OS LINKS
+        $links = '';
+        $queryParams = [];
         foreach ($pages as $page) {
             $queryParams['page'] = $page['page'];
             $link = $url.'?'.http_build_query($queryParams);
-    
             // RENDERIZAÇÃO DA VIEW
             $links .= View::render('pages/pagination/link', [
                 'page'   => $page['page'],
