@@ -45,7 +45,7 @@ class Testimony {
         $this->data_criacao = date('Y-m-d H:i:s');
 
         // INSERE O DEPOIMENTO NO BANCO DE DADOS
-        $this->id = (new Database('depoimentos'))->insert([
+        $this->id = (new Database('testimony'))->insert([
             'nome'         => $this->nome,
             'mensagem'     => $this->mensagem,
             'data_criacao' => $this->data_criacao
@@ -70,7 +70,7 @@ class Testimony {
         $fields = '*'
     ) {
         return (
-            new Database('depoimentos')
+            new Database('testimony')
         )->select(
             $where, 
             $order, 
