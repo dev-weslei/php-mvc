@@ -12,7 +12,7 @@ class Home extends Template {
 
         // view da Home
         $content = View::render('pages/home', [
-            'name'        => $obOrganization->name,
+            'name' => $obOrganization->name,
        ]);
 
        // view do Template
