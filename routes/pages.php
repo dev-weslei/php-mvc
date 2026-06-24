@@ -10,12 +10,14 @@ $obRouter->get('/', [
     }
 ]);
 
+// ROTA SOBRE - GET
 $obRouter->get('/sobre', [
     function() {
         return new Response(200, Pages\About::getAbout());
     }
 ]);
 
+// ROTA DE DEPOIMENTOS - GET
 $obRouter->get('/depoimentos', [
     function($request) {
         return new Response(200, Pages\Testimonies::getTestimonies($request));
