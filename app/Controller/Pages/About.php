@@ -7,7 +7,6 @@ use App\Model\Entity\Organization;
 
 class About extends Template {
 
-
     /**
      * Método responsável por retornar o conteúdo (view) da página de Sobre
      *
