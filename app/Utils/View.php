@@ -3,14 +3,16 @@
 namespace App\Utils;
 
 class View {
-
     /**
      * Váriaveis padrão da View
      * @var array
      */
     private static $vars = [];
 
-    
+    /**
+     * Método responsável por renderizar uma view genérica
+     * @param string $view
+     */
     private static function getContentView($view) {
         $file = __DIR__ . "/../../resources/view/".$view .".html";
         return file_exists($file) ? file_get_contents($file) : '';
@@ -24,8 +26,7 @@ class View {
     }
 
     /**
-     *Retorna o conteúdo renderizado na View
-     *
+     * Método responsável por retornar uma view renderizada
      * @param string $view
      * @param array $vars (string/numeric)
      * @return string
@@ -34,16 +35,18 @@ class View {
 
         $contentView = self::getContentView($view);
 
-        // MERGE DE VÁRIAVEIS DO USUÁRIO COM AS PADRÕES DA VIEW
+        // Merge das variavies do usuário com os padrões da view
         $vars = array_merge(self::$vars, $vars);
-
         $keys = array_keys($vars);
-        // aplicando padrão de substituição em cada key no meu array
         $keys = array_map(function($item){
             return "{{" . $item . "}}";
         }, $keys);
 
         // $keys (chaves com formato de replace), valores para ser inseridos, string onde será realizada a substituição
-        return str_replace($keys, array_values($vars), $contentView);
+        return str_replace(
+            $keys, 
+            array_values($vars), 
+            $contentView
+        );
     }
 }
