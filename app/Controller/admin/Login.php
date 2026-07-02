@@ -20,7 +20,7 @@ class Login extends Template {
         // renderizacao view status
         $status = !is_null($errorMessage) ? Alert::getError($errorMessage) : '';
 
-        $body = View::render('pages/admin/login', [
+        $body = View::render('/admin/login', [
             'status' => $status
         ]);
 
