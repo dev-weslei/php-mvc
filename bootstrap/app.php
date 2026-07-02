@@ -8,10 +8,12 @@ use App\Utils\View;
 use WilliamCosta\DatabaseManager\Database;
 use App\Http\Middleware\Queue as MiddlewareQueue;
 
-// CARREGA AS VARIAVEIS DE AMBIENTE DO PROJETO
+define('URL', 'http://localhost:8000/php-mvc');
+
+// Carrega as váriaveis de ambiente da aplicação
 Enviroment::load(__DIR__.'/../');
 
-// DEFINE AS CONFIGURAÇÕES DO BANCO DE DADOS
+// Define as configurações do banco de dados
 Database::config(
     getenv('DB_HOST'),
     getenv('DB_NAME'),
@@ -24,7 +26,7 @@ View::init([
     'URL' => getenv('URL')
 ]);
 
-// Define o mapeamento (registrar) de Middlewares
+// Define o mapeamento de Middlewares
 MiddlewareQueue::setMap([
     'maintenance'           => App\Http\Middleware\Maintenance::class,
     'required-admin-logout' => App\Http\Middleware\RequiredAdminLogout::class,
