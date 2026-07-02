@@ -168,7 +168,7 @@ class Testimonies extends Template {
         $request->getRouter()->redirect('/admin/testimonies/'.$obTestimony->id.'/edit?status=updated');
     }
 
-     /**
+    /**
      * Méotodo responsável por renderizar a view de exclusão de um depoimento
      * @param Request $request
      * @param integer $id
@@ -193,7 +193,6 @@ class Testimonies extends Template {
             'testimonies'
         );
     }
-
 
    /**
      * Méotodo responsável por excluir um depoimento
