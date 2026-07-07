@@ -30,7 +30,8 @@ View::init([
 MiddlewareQueue::setMap([
     'maintenance'           => App\Http\Middleware\Maintenance::class,
     'required-admin-logout' => App\Http\Middleware\RequiredAdminLogout::class,
-    'required-admin-login'  => App\Http\Middleware\RequiredAdminLogin::class
+    'required-admin-login'  => App\Http\Middleware\RequiredAdminLogin::class,
+    'api'                   => App\Http\Middleware\Api::class
 ]);
 
 // Mapeamento de Middlewares que serão executados em todas as rotas da aplicação

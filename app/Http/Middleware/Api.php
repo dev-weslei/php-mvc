@@ -1,0 +1,25 @@
+<?php
+
+namespace App\Http\Middleware;
+
+use \Closure;
+use \App\Http\Request;
+use \App\Http\Response;
+
+class Api {
+
+    /**
+     * Método responsável por executar o Middleware
+     *
+     * @param Request $request
+     * @param Closure $next
+     * @return Response
+     */
+    public function handle($request, $next) {
+        // Altera o content-type para JSON
+        $request->getRouter()->setContentType('application/json');
+
+        // Executa o próximo nível do Middleware
+        return $next($request);
+    }
+}
