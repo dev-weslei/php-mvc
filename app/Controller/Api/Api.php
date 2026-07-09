@@ -9,10 +9,9 @@ class Api
 {
     /**
      * Método responsável por retornar os detalhes da API
-     * @param Request $request
      * @return array
      */
-    public static function getDetails($request)
+    public static function getDetails()
     {
         return [
             'nome'   => 'API WDEV',
@@ -28,7 +27,8 @@ class Api
      * @param Pagination $obPagination
      * @return array
      */
-    protected static function getPagination($request, $obPagination) {
+    protected static function getPagination($request, $obPagination)
+    {
         // Query Params
         $queryParams = $request->getQueryParams();
         $pages = $obPagination->getPages();
