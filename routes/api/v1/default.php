@@ -8,7 +8,7 @@ $obRouter->get('/api/v1', [
     'middlewares' => [
         'api'
     ],
-    function ($request) {
-        return new Response(200, Api::getDetails($request), 'application/json');
+    function () {
+        return new Response(200, Api::getDetails(), 'application/json');
     }
 ]);
