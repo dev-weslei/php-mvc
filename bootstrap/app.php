@@ -11,7 +11,7 @@ use App\Http\Middleware\Queue as MiddlewareQueue;
 define('URL', 'http://localhost:8000/php-mvc');
 
 // Carrega as váriaveis de ambiente da aplicação
-Enviroment::load(__DIR__.'/../');
+Enviroment::load(__DIR__ . '/../');
 
 // Define as configurações do banco de dados
 Database::config(
@@ -31,7 +31,8 @@ MiddlewareQueue::setMap([
     'maintenance'           => App\Http\Middleware\Maintenance::class,
     'required-admin-logout' => App\Http\Middleware\RequiredAdminLogout::class,
     'required-admin-login'  => App\Http\Middleware\RequiredAdminLogin::class,
-    'api'                   => App\Http\Middleware\Api::class
+    'api'                   => App\Http\Middleware\Api::class,
+    'user-basic-auth'       => App\Http\Middleware\UserBasicAuth::class
 ]);
 
 // Mapeamento de Middlewares que serão executados em todas as rotas da aplicação
