@@ -11,6 +11,21 @@ use Exception;
 class User extends Api
 {
     /**
+     * Método responsável por retornar o usuário atualmente conectado
+     * @param Request $request
+     * @return array
+     */
+    public static function getCurrentUser($request)
+    {
+        $obUser = $request->getUser();
+        return [
+            'id'    => $obUser->id,
+            'nome'  => $obUser->nome, 
+            'email' => $obUser->email
+        ];
+    }
+
+    /**
      * Método responsável por cadastrar novo usuário
      * @param Request $request
      * @return array
@@ -72,7 +87,7 @@ class User extends Api
         $paginaAtual = $paginaAtual['page'] ?? 1;
 
         $obPagination = new Pagination($quantidadeTotalUsuarios, $paginaAtual, 5);
-        $results = EntityUser::getUsers(null, 'id ASC', $obPagination->getLimit());
+        $results = EntityUser::getUsers(null, 'id DESC', $obPagination->getLimit());
 
         while ($obUser = $results->fetchObject(EntityUser::class)) {
             $itens[] = [
