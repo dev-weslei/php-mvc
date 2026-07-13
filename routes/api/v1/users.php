@@ -7,10 +7,22 @@ use App\Http\Response;
 $obRouter->get('/api/v1/users', [
     'middlewares' => [
         'api',
-        'user-basic-auth'
+        'user-basic-auth',
+        'cache'
     ],
     function ($request) {
         return new Response(200, User::getUsers($request), 'application/json');
+    }
+]);
+
+// Rota de consultas do usuário atual
+$obRouter->get('/api/v1/users/me', [
+    'middlewares' => [
+        'api',
+        'jwt-auth'
+    ],
+    function ($request) {
+        return new Response(200, User::getCurrentUser($request), 'application/json');
     }
 ]);
 
