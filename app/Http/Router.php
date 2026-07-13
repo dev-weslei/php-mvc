@@ -101,6 +101,9 @@ class Router {
             $params['variables'] = $matches[1];
         }
 
+        // Remove barra no final da rota
+        $route = rtrim($route, '/');
+
         // EXPRESSÃO REGULAR PARA VALIDAR A ROTA
         $patternRoute = '/^'.str_replace('/', '\/', $route).'$/';
        
@@ -154,7 +157,7 @@ class Router {
      *
      * @return string
      */
-    private function getUri() {
+    public function getUri() {
         // URI DA REQUEST
         $uri = $this->request->getUri();
   
